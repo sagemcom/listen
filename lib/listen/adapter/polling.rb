@@ -19,7 +19,6 @@ module Listen
 
       def _run
         loop do
-          start = Time.now.to_f
           @polling_callbacks.each do |callback|
             callback.call(nil)
             # TODO: warn if nap_time is negative (polling too slow)
