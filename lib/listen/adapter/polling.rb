@@ -22,9 +22,8 @@ module Listen
           start = Time.now.to_f
           @polling_callbacks.each do |callback|
             callback.call(nil)
-            nap_time = options.latency - (Time.now.to_f - start)
             # TODO: warn if nap_time is negative (polling too slow)
-            sleep(nap_time) if nap_time > 0
+            sleep(options.latency) if options.latency > 0
           end
         end
       end
