@@ -22,10 +22,13 @@ module Listen
 
       current.each do |full_path|
         type = detect_type(full_path)
-        item_rel_path = full_path.relative_path_from(dir).to_s
-        _change(snapshot, type, item_rel_path, options)
+        if type == :file || options[:recursive]
+          item_rel_path = full_path.relative_path_from(dir).to_s
+          _change(snapshot, type, item_rel_path, options)
+        end
       end
 
+      return unless options[:recursive]
       # TODO: this is not tested properly
       previous = previous.reject { |entry, _| current.include? path + entry }
 
@@ -78,3 +81,4 @@ module Listen
     end
   end
 end
+
