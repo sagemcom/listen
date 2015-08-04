@@ -31,7 +31,7 @@ module Listen
 
       def _process_event(dir, _)
         new_options = @config.adapter_options
-        new_options[:recursive] = true
+        new_options[:recursive] = false
         _queue_change(:dir, dir, '.', new_options)
       end
     end
