@@ -22,7 +22,7 @@ module Listen
           @polling_callbacks.each do |callback|
             callback.call(nil)
             # TODO: warn if nap_time is negative (polling too slow)
-            sleep(options.latency) if options.latency > 0
+            sleep(options.latency) if @options.latency > 0
           end
         end
       end
